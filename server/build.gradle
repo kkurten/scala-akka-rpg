@@ -1,0 +1,49 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.2.5.RELEASE")
+    }
+}
+
+apply plugin: 'scala'
+apply plugin: 'spring-boot'
+
+jar {
+    baseName = 'akka-rpg-server'
+    version =  '0.1.0'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile project(":common")
+
+    compile("org.springframework.boot:spring-boot-starter")
+    compile("org.springframework.boot:spring-boot-starter-actuator")
+    compile 'org.scala-lang:scala-library:2.11.7'
+    compile 'com.typesafe.akka:akka-actor_2.11:2.3.12'
+    compile 'com.typesafe.akka:akka-remote_2.11:2.3.12'
+
+    compile('org.slf4j:slf4j-api')
+    compile('ch.qos.logback:logback-classic')
+    compile('ch.qos.logback:logback-core')
+    compile('org.clapper:grizzled-slf4j_2.11:1.0.2')
+
+    testCompile('org.scalatest:scalatest_2.11:2.2.4')
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.6'
+}
+
+run {
+    systemProperties = System.properties
+}
+
+springBoot {
+    mainClass = "fi.kristo.akkarpg.server.StartApplication"
+}

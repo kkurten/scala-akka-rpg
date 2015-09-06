@@ -1,0 +1,4 @@
+rootProject.name = 'akka-rpg'
+include 'client'
+include 'server'
+include 'common'

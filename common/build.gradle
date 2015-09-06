@@ -1,0 +1,34 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.2.5.RELEASE")
+    }
+}
+
+apply plugin: 'scala'
+apply plugin: 'spring-boot'
+
+jar {
+    baseName = 'akka-rpg-common'
+    version =  '0.1.0'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // tag::actuator[]
+    compile 'org.scala-lang:scala-library:2.11.7'
+
+    compile('org.slf4j:slf4j-api')
+    compile('ch.qos.logback:logback-classic')
+    compile('ch.qos.logback:logback-core')
+    compile('org.clapper:grizzled-slf4j_2.11:1.0.2')
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.6'
+}
